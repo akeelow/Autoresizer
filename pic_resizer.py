@@ -18,15 +18,14 @@ def resize_image(image_path, width_size):
             print(f'ERROR__{image_path}')
 
 def main():
-    print("\033[4m\033[37m\033[44m{}\033[0m".format("Python 3"))
     width_size = 1024
     while True:
         time.sleep(0.1)
         for filename in os.listdir('.'):
-            if filename.endswith('.jpeg') or filename.endswith('.jpg') or filename.endswith('.png'):
+            filename_lower = filename.lower()
+            if filename_lower.endswith('.jpeg') or filename_lower.endswith('.jpg') or filename_lower.endswith('.png'):
                 if filename.startswith(str(width_size)) == False and filename.startswith('ERROR') == False:
                     resize_image(filename, width_size)
-
 
 if __name__ == '__main__':
     main()

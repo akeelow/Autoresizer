@@ -1,31 +1,34 @@
+from fileinput import filename
 import os
 import time
 from PIL import Image
 
-def resize_image(image_path, width_size):
+def image_resize(image, width):
+    image_width, image_height = image.size   
+    image_resize = image.resize((width, int(image_height * width / image_width)), Image.ANTIALIAS)
     try:
-        image = Image.open(image_path)
-        width_percent = (width_size / float(image.size[0])) 
-        height_size = int((float(image.size[1]) * float(width_percent)))
-        new_image = image.resize((width_size, height_size))
-        new_image.save(f'{width_size}__{image_path}', optimize=True, quality=60)
-        print(f'{width_size}__{image_path} resized to {width_size}x{height_size} successfully')
-        os.remove(image_path)
+        image_resize.save(str(width) + "__" + image.filename + '.jpg', optimize=True)
+        print('Resized ' + image.filename + ' successfully')
+        os.remove(image.filename)
     except Exception as e:
-        try:
-            os.rename(image_path, f'ERROR__{image_path}')
-        finally:
-            print(f'ERROR__{image_path}')
+        print(image.filename + ': ' + str(e))
 
 def main():
     width_size = 1024
+    supported_file_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp']  
     while True:
-        time.sleep(0.1)
-        for filename in os.listdir('.'):
-            filename_lower = filename.lower()
-            if filename_lower.endswith('.jpeg') or filename_lower.endswith('.jpg') or filename_lower.endswith('.png'):
-                if filename.startswith(str(width_size)) == False and filename.startswith('ERROR') == False:
-                    resize_image(filename, width_size)
+        time.sleep(1)
+        for file in os.listdir('.'):
+            file_name, file_extensions = os.path.splitext(file)
+            if file_extensions.lower() in supported_file_extensions and file_name.find('__') == -1:
+                try:
+                    image = Image.open(file_name + file_extensions)
+                except:
+                    print('Unsupported format')
+                    continue
+
+                image_resize(image, width_size)
+
 
 if __name__ == '__main__':
     main()

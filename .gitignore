@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 .venv/
 output/
+build/
+dist/
+test_image/

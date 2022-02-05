@@ -6,12 +6,15 @@ from PIL import Image
 def image_resize(image, width):
     image_width, image_height = image.size   
     image_resize = image.resize((width, int(image_height * width / image_width)), Image.ANTIALIAS)
+    if image_resize.mode != "RGB":
+        image_resize = image_resize.convert("RGB")
     try:
         image_resize.save(str(width) + "__" + image.filename + '.jpg', optimize=True)
         print('Resized ' + image.filename + ' successfully')
+        image.close()
         os.remove(image.filename)
     except Exception as e:
-        print(image.filename + ': ' + str(e))
+        print('Error: ' + str(e))
 
 def main():
     width_size = 1024
@@ -23,8 +26,9 @@ def main():
             if file_extensions.lower() in supported_file_extensions and file_name.find('__') == -1:
                 try:
                     image = Image.open(file_name + file_extensions)
-                except:
-                    print('Unsupported format')
+                except Exception as e:
+                    print('Error: ' + str(e))
+                    os.rename(file_name + file_extensions, '__' + file_name + file_extensions)
                     continue
 
                 image_resize(image, width_size)

@@ -9,3 +9,7 @@ Automatically resizes all pictures in a folder to a width of 1024 px and convert
 
 ## Formats
 The following image formats are supported: jpg, png, bmp, webp
+
+## Demo
+
+![](https://github.com/akeelow/Autoresizer/blob/main/demo.gif)

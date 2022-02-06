@@ -12,4 +12,4 @@ The following image formats are supported: jpg, png, bmp, webp
 
 ## Demo
 
-![](https://github.com/akeelow/Autoresizer/blob/main/demo.gif)
+![](https://github.com/akeelow/Autoresizer/blob/main/img/demo.gif)

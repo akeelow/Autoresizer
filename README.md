@@ -13,3 +13,7 @@ The following image formats are supported: jpg, png, bmp, webp
 ## Demo
 
 ![](https://github.com/akeelow/Autoresizer/blob/main/img/demo.gif)
+
+## Build to EXE
+
+`pyinstaller --noconfirm --onefile --console --icon "img/icon.ico" --name "autoresizer"  "autoresizer.py"`

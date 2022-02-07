@@ -6,12 +6,6 @@ from PIL import Image
 list_of_blocked_files = ['autoresizer.py', 'autoresizer.exe']
 width_size = 1024
 
-def is_no_blocked(file_name):
-    if file_name in list_of_blocked_files:
-        return False
-    else:
-        return True
-
 def image_resize(image, width):
     image_width, image_height = image.size   
     image_resize = image.resize((width, int(image_height * width / image_width)), Image.ANTIALIAS)
@@ -34,7 +28,7 @@ def main():
         time.sleep(1)
         for file in os.listdir('.'):
             try:
-                if is_no_blocked(file):
+                if file not in list_of_blocked_files:
                     image = Image.open(file)
                     image_resize(image, width_size)
             except Exception as e:

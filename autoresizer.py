@@ -12,7 +12,7 @@ def image_resize(image, width):
     if image_resize.mode != "RGB":
         image_resize = image_resize.convert("RGB")
     try:
-        new_file_name = str(width) + "__" + image.filename + '.jpg'
+        new_file_name = f"{str(width)}__{image.filename.split('.')[0]}.jpg"
         image_resize.save(new_file_name, optimize=True)
         print(f"{image.filename} → resized successfully")
         image.close()

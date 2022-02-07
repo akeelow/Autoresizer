@@ -14,12 +14,12 @@ def image_resize(image, width):
     try:
         new_file_name = str(width) + "__" + image.filename + '.jpg'
         image_resize.save(new_file_name, optimize=True)
-        print('Resized ' + image.filename + ' successfully')
+        print(f"{image.filename} → resized successfully")
         image.close()
         list_of_blocked_files.append(new_file_name)
         os.remove(image.filename)
     except Exception as e:
-        print('Error: ' + str(e))
+        print(f"Error: {str(e)}")
 
 
 
@@ -32,7 +32,7 @@ def main():
                     image = Image.open(file)
                     image_resize(image, width_size)
             except Exception as e:
-                print('Error: ' + str(e))
+                print(f"Error: {str(e)}")
                 list_of_blocked_files.append(file)
 
 

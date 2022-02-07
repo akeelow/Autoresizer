@@ -3,7 +3,7 @@ import os
 import time
 from PIL import Image
 
-list_of_blocked_files = []
+list_of_blocked_files = ['autoresizer.py', 'autoresizer.exe']
 width_size = 1024
 
 def is_no_blocked(file_name):

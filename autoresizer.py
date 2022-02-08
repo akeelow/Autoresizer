@@ -4,6 +4,7 @@ import time
 from PIL import Image
 import sys
 
+print(sys.argv[0])
 list_of_blocked_files = [sys.argv[0]]
 width_size_from_file_name = ''.join(list(filter(str.isdigit, sys.argv[0])))
 
@@ -15,7 +16,7 @@ def image_resize(image, width):
     if image_resize.mode != "RGB":
         image_resize = image_resize.convert("RGB")
     try:
-        new_file_name = f"{str(width)}__{image.filename.split('.')[0]}.jpg"
+        new_file_name = f"{str(width)}{image.filename.split('.')[0]}.jpg"
         image_resize.save(new_file_name, optimize=True)
         print(f"{image.filename} → resized successfully")
         image.close()

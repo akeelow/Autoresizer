@@ -2,9 +2,13 @@ from fileinput import filename
 import os
 import time
 from PIL import Image
+import sys
 
 list_of_blocked_files = ['autoresizer.py', 'autoresizer.exe']
-width_size = 1024
+
+width_size_from_file_name = ''.join(list(filter(str.isdigit, sys.argv[0])))
+
+width_size = int(width_size_from_file_name) if width_size_from_file_name.isdigit() else 1024
 
 def image_resize(image, width):
     image_width, image_height = image.size   

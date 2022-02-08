@@ -4,8 +4,7 @@ import time
 from PIL import Image
 import sys
 
-list_of_blocked_files = ['autoresizer.py', 'autoresizer.exe']
-
+list_of_blocked_files = [sys.argv[0]]
 width_size_from_file_name = ''.join(list(filter(str.isdigit, sys.argv[0])))
 
 width_size = int(width_size_from_file_name) if width_size_from_file_name.isdigit() else 1024

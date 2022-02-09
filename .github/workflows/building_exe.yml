@@ -1,4 +1,4 @@
-name: Package Application with Pyinstaller
+name: Building exe
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        path: autoresizer.py
+        path: Autoresizer/autoresizer.py
 
     - uses: actions/upload-artifact@v2
       with:

@@ -132,4 +132,3 @@ output/
 build/
 dist/
 test_image/
-autoresizer.spec

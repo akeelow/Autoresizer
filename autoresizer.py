@@ -4,11 +4,13 @@ import time
 from PIL import Image
 import sys
 
-list_of_blocked_files = [os.path.basename(sys.argv[0])]
+list_of_blocked_files = []
+list_of_blocked_files.append(os.path.basename(sys.argv[0]))
 
+width_size = 1024
 width_size_from_file_name = ''.join(list(filter(str.isdigit, os.path.basename(sys.argv[0]))))
-
-width_size = int(width_size_from_file_name) if width_size_from_file_name.isdigit() else 1024
+if width_size_from_file_name.isdigit():
+    width_size = int(width_size_from_file_name) 
 
 def image_resize(image, width):
     image_width, image_height = image.size   
@@ -24,7 +26,6 @@ def image_resize(image, width):
         os.remove(image.filename)
     except Exception as e:
         print(f"Error: {str(e)}")
-
 
 
 def main():
